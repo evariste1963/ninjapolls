@@ -20,7 +20,7 @@
       answerA: "Python",
       answerB: "Javascript",
       votesA: 9,
-      VotesB: 15,
+      votesB: 15,
     },
   ];
 
