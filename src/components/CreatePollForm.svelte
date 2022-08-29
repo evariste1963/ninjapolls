@@ -4,7 +4,6 @@
   const dispatch = createEventDispatcher();
 
   import Button from "../shared/button.svelte";
-import { each } from "svelte/internal";
 
   let fields = { question: "", answerA: "", answerB: "" };
   let errors = { question: "", answerA: "", answerB: "" };
@@ -44,10 +43,7 @@ import { each } from "svelte/internal";
       dispatch("add");
     }
   };
-
 </script>
-
-
 
 <form action="" on:submit|preventDefault={submitHandler}>
   <div class="form-field">
