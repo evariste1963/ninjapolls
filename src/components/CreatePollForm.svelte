@@ -9,12 +9,8 @@
   let errors = { question: "", answerA: "", answerB: "" };
   let valid = false;
 
-  //move this to a new reusable component for any and all inputs?
-  const handleInput = e => {
-    if (
-      fields.question.trim().length < 5 &&
-      fields.question.trim().length > 0
-    ) {
+  const handleQuestionInput = () => {
+    if (fields.question.trim().length < 5) {
       valid = false;
       errors.question = "Question must be at least 5 characters long";
     } else {
@@ -22,18 +18,9 @@
       valid = true;
     }
   };
-  /////////////////////////////////////
 
-  const submitHandler = e => {
-    //valid = true;
-    // validate question
-    /*if (fields.question.trim().length < 5) {
-      valid = false;
-      errors.question = "Question must be at least 5 characters long";
-    } else {
-      errors.question = "";
-    }*/
-    // validate answerA
+  const submitHandler = () => {
+    handleQuestionInput();
     if (fields.answerA.trim().length < 1) {
       valid = false;
       errors.answerA = "Answer A cannot be empty";
@@ -60,7 +47,11 @@
   };
 </script>
 
-<form action="" on:submit|preventDefault={submitHandler} on:input={handleInput}>
+<form
+  action=""
+  on:submit|preventDefault={submitHandler}
+  on:input={handleQuestionInput}
+>
   <div class="form-field">
     <label for="question">Poll Question</label>
     <input type="text" id="question" bind:value={fields.question} />
