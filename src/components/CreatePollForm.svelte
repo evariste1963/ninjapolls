@@ -39,11 +39,15 @@
     if (valid) {
       let poll = { ...fields, votesA: 0, votesB: 0, id: Math.random() };
       // save poll to store
-      PollStore.update(currentPolls => {
+      PollStore.update((currentPolls) => {
         return [poll, ...currentPolls];
       });
       dispatch("add");
     }
+  };
+
+  const handleCancel = () => {
+    dispatch("add");
   };
 </script>
 
@@ -67,8 +71,14 @@
     <input type="text" id="answer-b" bind:value={fields.answerB} />
   </div>
   <div class="error">{errors.answerB}</div>
+
   <Button type={"secondary"} flat={false}>Add Poll</Button>
 </form>
+<div style="margin: 0 auto; text-align:center">
+  <Button type={"primary"} flat={true} inverse={true} on:click={handleCancel}
+    >Cancel</Button
+  >
+</div>
 
 <style>
   form {

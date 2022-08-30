@@ -1,5 +1,7 @@
 <script>
   //import { onMount, onDestroy } from "svelte";
+  import { fade, slide, scale } from "svelte/transition";
+  import { flip } from "svelte/animate";
   import PollStore from "../stores/PollStore";
   import PollDetails from "./PollDetails.svelte";
 
@@ -21,11 +23,15 @@
 <!-- $PollStore below subcribes and unsubscribes from the store implicitly -->
 
 {#if $PollStore.length < 1}
-  <p style="text-align:center">there are no Polls to show, try creating one!</p>
+  <p in:fade out:slide|local style="text-align:center">
+    there are no Polls to show, try creating one!
+  </p>
 {:else}
   <div class="poll-list">
     {#each $PollStore as poll (poll.id)}
-      <PollDetails {poll} />
+      <div in:fade out:slide animate:flip={{ duration: 500 }}>
+        <PollDetails {poll} />
+      </div>
     {/each}
   </div>
 {/if}
