@@ -21,9 +21,7 @@
 <!-- $PollStore below subcribes and unsubscribes from the store implicitly -->
 
 {#if $PollStore.length < 1}
-  <h4 style="text-align:center"
-    >there are no Polls to show, try creating one!</h4
-  >
+  <p style="text-align:center">there are no Polls to show, try creating one!</p>
 {:else}
   <div class="poll-list">
     {#each $PollStore as poll (poll.id)}
@@ -39,7 +37,7 @@
     grid-gap: 20px;
   }
 
-  h4 {
+  p {
     font-style: italic;
     color: #272727;
     font-weight: 400;
