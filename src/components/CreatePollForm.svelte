@@ -12,16 +12,20 @@
   //move this to a new reusable component for any and all inputs?
   const handleInput = e => {
     if (
-      fields.question.trim().length < 10 &&
+      fields.question.trim().length < 5 &&
       fields.question.trim().length > 0
     ) {
+      valid = false;
       errors.question = "Question must be at least 5 characters long";
-    } else errors.question = "";
+    } else {
+      errors.question = "";
+      valid = true;
+    }
   };
   /////////////////////////////////////
 
   const submitHandler = e => {
-    valid = true;
+    //valid = true;
     // validate question
     /*if (fields.question.trim().length < 5) {
       valid = false;
