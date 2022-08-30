@@ -1,6 +1,7 @@
 <script>
   import PollStore from "../stores/PollStore";
   import Card from "../shared/Card.svelte";
+  import Button from "../shared/Button.svelte";
   export let poll;
 
   //reactive values
@@ -10,9 +11,9 @@
 
   //handling Votes
   const handleVote = (option, id) => {
-    PollStore.update(currentPolls => {
+    PollStore.update((currentPolls) => {
       let copiedPolls = [...currentPolls];
-      let upVotedPoll = copiedPolls.find(poll => poll.id == id);
+      let upVotedPoll = copiedPolls.find((poll) => poll.id == id);
 
       option === "a" ? upVotedPoll.votesA++ : upVotedPoll.votesB++;
 
@@ -20,12 +21,9 @@
     });
   };
 
-  const handleDelete = id => {
-    PollStore.update(currentPolls => {
-      //let copiedPolls = [...currentPolls];
-      let remainingPolls = currentPolls.filter(poll => poll.id !== id);
-
-      return remainingPolls;
+  const handleDelete = (id) => {
+    PollStore.update((currentPolls) => {
+      return currentPolls.filter((poll) => poll.id !== id);
     });
   };
 </script>
@@ -34,9 +32,10 @@
   <div class="poll">
     <div class="title">
       <h3 style="margin-left:2px">{poll.question}</h3>
-      <h3
+      <Button
+        flat={true}
         style="margin-right:2px; cursor:pointer"
-        on:click={() => handleDelete(poll.id)}>X</h3
+        on:click={() => handleDelete(poll.id)}>Delete</Button
       >
     </div>
     <p>Total votes: {totalVotes}</p>
