@@ -9,15 +9,26 @@
   let errors = { question: "", answerA: "", answerB: "" };
   let valid = false;
 
-  const submitHandler = (e) => {
+  //move this to a new reusable component for any and all inputs?
+  const handleInput = e => {
+    if (
+      fields.question.trim().length < 10 &&
+      fields.question.trim().length > 0
+    ) {
+      errors.question = "Question must be at least 5 characters long";
+    } else errors.question = "";
+  };
+  /////////////////////////////////////
+
+  const submitHandler = e => {
     valid = true;
     // validate question
-    if (fields.question.trim().length < 5) {
+    /*if (fields.question.trim().length < 5) {
       valid = false;
       errors.question = "Question must be at least 5 characters long";
     } else {
       errors.question = "";
-    }
+    }*/
     // validate answerA
     if (fields.answerA.trim().length < 1) {
       valid = false;
@@ -37,7 +48,7 @@
     if (valid) {
       let poll = { ...fields, votesA: 0, votesB: 0, id: Math.random() };
       // save poll to store
-      PollStore.update((currentPolls) => {
+      PollStore.update(currentPolls => {
         return [poll, ...currentPolls];
       });
       dispatch("add");
@@ -45,7 +56,7 @@
   };
 </script>
 
-<form action="" on:submit|preventDefault={submitHandler}>
+<form action="" on:submit|preventDefault={submitHandler} on:input={handleInput}>
   <div class="form-field">
     <label for="question">Poll Question</label>
     <input type="text" id="question" bind:value={fields.question} />
