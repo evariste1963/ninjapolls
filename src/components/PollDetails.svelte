@@ -10,20 +10,35 @@
 
   //handling Votes
   const handleVote = (option, id) => {
-    PollStore.update((currentPolls) => {
+    PollStore.update(currentPolls => {
       let copiedPolls = [...currentPolls];
-      let upVotedPoll = copiedPolls.find((poll) => poll.id == id);
+      let upVotedPoll = copiedPolls.find(poll => poll.id == id);
 
       option === "a" ? upVotedPoll.votesA++ : upVotedPoll.votesB++;
 
       return copiedPolls;
     });
   };
+
+  const handleDelete = id => {
+    PollStore.update(currentPolls => {
+      //let copiedPolls = [...currentPolls];
+      let remainingPolls = currentPolls.filter(poll => poll.id !== id);
+
+      return remainingPolls;
+    });
+  };
 </script>
 
 <Card>
   <div class="poll">
-    <h3>{poll.question}</h3>
+    <div class="title">
+      <h3 style="margin-left:2px">{poll.question}</h3>
+      <h3
+        style="margin-right:2px; cursor:pointer"
+        on:click={() => handleDelete(poll.id)}>X</h3
+      >
+    </div>
     <p>Total votes: {totalVotes}</p>
     <div class="answer" on:click={() => handleVote("a", poll.id)}>
       <div class="percent percent-a" style="width:{percentA}%" />
@@ -37,6 +52,9 @@
 </Card>
 
 <style>
+  .title {
+    display: flex;
+  }
   h3 {
     margin: 0 auto;
   }
