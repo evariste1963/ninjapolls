@@ -76,8 +76,12 @@
   <Button type={"secondary"} flat={false}>Add Poll</Button>
 </form>
 <div style="margin: 0 auto; text-align:center">
-  <Button type={"primary"} flat={true} inverse={true} on:click={handleCancel}
-    >Cancel</Button
+  <Button
+    margin={"margin-top:0"}
+    type={"primary"}
+    flat={true}
+    inverse={true}
+    on:click={handleCancel}>Cancel</Button
   >
 </div>
 

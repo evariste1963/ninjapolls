@@ -2,9 +2,10 @@
   export let type = "primary";
   export let flat = false;
   export let inverse = false;
+  export let margin = "margin:20px";
 </script>
 
-<button class={type} class:flat class:inverse on:click>
+<button class={type} style={margin} class:flat class:inverse on:click>
   <slot />
 </button>
 
