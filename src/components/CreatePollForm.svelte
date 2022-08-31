@@ -56,6 +56,7 @@
   action=""
   on:submit|preventDefault={submitHandler}
   on:input={handleQuestionInput}
+  in:fade
 >
   <div class="form-field">
     <label for="question">Poll Question</label>
