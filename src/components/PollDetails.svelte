@@ -32,7 +32,11 @@
   <div class="poll">
     <div class="title">
       <h3 style="margin-left:2px">{poll.question}</h3>
-      <Button flat={true} on:click={() => handleDelete(poll.id)}>Delete</Button>
+      <Button
+        margin={"margin-top:0"}
+        flat={true}
+        on:click={() => handleDelete(poll.id)}>Delete</Button
+      >
     </div>
     <p>Total votes: {totalVotes}</p>
     <div class="answer" on:click={() => handleVote("a", poll.id)}>
