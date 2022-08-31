@@ -23,9 +23,9 @@
 <!-- $PollStore below subcribes and unsubscribes from the store implicitly -->
 
 {#if $PollStore.length < 1}
-  <p in:fade out:slide|local style="text-align:center">
+  <div class="noPolls" in:scale style="text-align:center">
     there are no Polls to show, try creating one!
-  </p>
+  </div>
 {:else}
   <div class="poll-list">
     {#each $PollStore as poll (poll.id)}
@@ -43,7 +43,7 @@
     grid-gap: 20px;
   }
 
-  p {
+  .noPolls {
     font-style: italic;
     color: #272727;
     font-weight: 400;
