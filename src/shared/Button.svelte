@@ -18,12 +18,14 @@
     font-weight: bold;
     box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.2);
     margin: 20px;
+    min-width: 100px;
   }
   .primary {
     background: #d91b42;
     color: white;
   }
   .secondary {
+    border: 2px solid #45c496;
     background: #45c496;
     color: white;
   }
