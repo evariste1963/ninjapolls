@@ -1,14 +1,13 @@
 <script>
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
-  export let items;
-  export let activeItem;
+  let { items, activeItem } = $props();
 </script>
 
 <div class="tabs">
   <ul>
     {#each items as item}
-      <li on:click={() => dispatch("tabChange", item)}>
+      <li onclick={() => dispatch("tabChange", item)}>
         <div class:active={item === activeItem}>{item}</div>
       </li>
     {/each}

@@ -23,15 +23,15 @@
 <!-- $PollStore below subcribes and unsubscribes from the store implicitly -->
 
 {#if $PollStore.length < 1}
-  <div class="noPolls" in:scale style="text-align:center">
+  <div class="noPolls" in:scale|global style="text-align:center">
     there are no Polls to show, try creating one!
   </div>
 {:else}
   <div class="poll-list">
     {#each $PollStore as poll (poll.id)}
       <div
-        in:fly={{ x: 200, delay: 500 }}
-        out:fly={{ x: -200 }}
+        in:fly|global={{ x: 200, delay: 500 }}
+        out:fly|global={{ x: -200 }}
         animate:flip={{ duration: 1000 }}
       >
         <PollDetails {poll} />

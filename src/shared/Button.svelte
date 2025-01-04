@@ -1,12 +1,28 @@
 <script>
-  export let type = "primary";
-  export let flat = false;
-  export let inverse = false;
-  export let margin = "margin:20px";
+  import { createBubbler } from 'svelte/legacy';
+
+  const bubble = createBubbler();
+  /**
+   * @typedef {Object} Props
+   * @property {string} [type]
+   * @property {boolean} [flat]
+   * @property {boolean} [inverse]
+   * @property {string} [margin]
+   * @property {import('svelte').Snippet} [children]
+   */
+
+  /** @type {Props} */
+  let {
+    type = "primary",
+    flat = false,
+    inverse = false,
+    margin = "margin:20px",
+    children
+  } = $props();
 </script>
 
-<button class={type} style={margin} class:flat class:inverse on:click>
-  <slot />
+<button class={type} style={margin} class:flat class:inverse onclick={bubble('click')}>
+  {@render children?.()}
 </button>
 
 <style>

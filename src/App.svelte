@@ -8,7 +8,7 @@
 
   //tabs
   let items = ["Current Polls", "Add New Polls"];
-  let activeItem = "Current Polls";
+  let activeItem = $state("Current Polls");
 
   const tabChange = (e) => {
     activeItem = e.detail;

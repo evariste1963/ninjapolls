@@ -1,4 +1,6 @@
 <script>
+  import { preventDefault } from 'svelte/legacy';
+
   import PollStore from "../stores/PollStore.js";
   import { createEventDispatcher } from "svelte";
   import { fade, slide, scale } from "svelte/transition";
@@ -6,8 +8,8 @@
 
   import Button from "../shared/button.svelte";
 
-  let fields = { question: "", answerA: "", answerB: "" };
-  let errors = { question: "", answerA: "", answerB: "" };
+  let fields = $state({ question: "", answerA: "", answerB: "" });
+  let errors = $state({ question: "", answerA: "", answerB: "" });
   let valid = false;
 
   const handleQuestionInput = () => {
@@ -54,9 +56,9 @@
 
 <form
   action=""
-  on:submit|preventDefault={submitHandler}
-  on:input={handleQuestionInput}
-  in:fade
+  onsubmit={preventDefault(submitHandler)}
+  oninput={handleQuestionInput}
+  in:fade|global
 >
   <div class="form-field">
     <label for="question">Poll Question</label>
